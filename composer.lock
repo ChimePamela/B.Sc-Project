@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56abc574c9c50fc6e4b7f5ef2a76cd50",
+    "content-hash": "0f87242880422be5cb6e16495da12b30",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1060,6 +1060,70 @@
             "time": "2020-12-15T16:16:31+00:00"
         },
         {
+            "name": "laravel/sanctum",
+            "version": "v2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sanctum.git",
+                "reference": "0647a87140c7522e75826cffcadb3ad6e01f71e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/0647a87140c7522e75826cffcadb3ad6e01f71e9",
+                "reference": "0647a87140c7522e75826cffcadb3ad6e01f71e9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^6.9|^7.0|^8.0|^9.0",
+                "illuminate/database": "^6.9|^7.0|^8.0|^9.0",
+                "illuminate/support": "^6.9|^7.0|^8.0|^9.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^8.0|^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Sanctum\\SanctumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Sanctum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.",
+            "keywords": [
+                "auth",
+                "laravel",
+                "sanctum"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/sanctum/issues",
+                "source": "https://github.com/laravel/sanctum"
+            },
+            "time": "2022-01-12T15:07:43+00:00"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v2.5.0",
             "source": {
@@ -1473,6 +1537,80 @@
                 }
             ],
             "time": "2020-12-14T13:15:25+00:00"
+        },
+        {
+            "name": "nagy/laravel-rating",
+            "version": "v2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mohamednagy/Laravel-rating.git",
+                "reference": "febd673ab87709c56231bce038f000597e8a4993"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mohamednagy/Laravel-rating/zipball/febd673ab87709c56231bce038f000597e8a4993",
+                "reference": "febd673ab87709c56231bce038f000597e8a4993",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^7.0|^6.0",
+                "php": "^8.0|^7.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^5.0|^4.0",
+                "phpunit/phpunit": "^9.3|^8.0",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nagy\\LaravelRating\\LaravelRatingServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelRatingFacade": "Nagy\\LaravelRating\\LaravelRatingFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nagy\\LaravelRating\\": "src",
+                    "Nagy\\LaravelRating\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmed Nagi",
+                    "email": "info@ahmednagi.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mohamed Nagy",
+                    "email": "mohamed.n.haleem@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "manage rating column for elqouent models",
+            "homepage": "https://github.com/nagy/laravel-rating",
+            "keywords": [
+                "laravel-rating",
+                "nagy"
+            ],
+            "support": {
+                "issues": "https://github.com/mohamednagy/Laravel-rating/issues",
+                "source": "https://github.com/mohamednagy/Laravel-rating/tree/v2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/nagy",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-22T08:03:25+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -7347,5 +7485,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

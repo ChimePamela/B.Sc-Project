@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::prefix('app')->middleware('auth:sanctum')->group(function () {
+    Route::get('profile', [UserController::class, '']);
+});
 
 Route::get('/{any?}', function() {
     return view('welcome');
