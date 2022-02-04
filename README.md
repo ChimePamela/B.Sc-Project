@@ -1,6 +1,9 @@
 
 # READIT :notebook_with_decorative_cover
 
+![image](https://user-images.githubusercontent.com/29035007/152468942-84972f92-f94a-4823-b408-b539bb72519d.png)
+
+
 This is an *ONLINE BOOK RECOMMENDATION SYSTEM*  -
 The system is an information-filtering system which will support its' user in a given topic by narrowing the set of posssible options and prioritizing its elements in a specific context.
 
