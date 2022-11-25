@@ -16,16 +16,20 @@ class Book extends Model
         'author_id',
         'isbn',
         'title',
+        'image_url',
         'description',
+        'category_id',
         'published_date',
         'for_sale',
+        'is_featured',
+        'is_best_selling',
         'price',
     ];
 
     /**
      * Get the author associated with the Book
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function author(): HasOne
     {
@@ -35,10 +39,19 @@ class Book extends Model
     /**
      * Get all of the reviews for the Book
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'book_id', 'id');
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class, 'id', 'category_id');
+    }
+
+    public function ratings()
+    {
+        return $this->ratingsCount();
     }
 }

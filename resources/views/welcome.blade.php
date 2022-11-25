@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    </script>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
@@ -18,7 +17,7 @@
 	<link rel="stylesheet" href="css/color.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{env('APP_NAME', 'Read-It - Review and Rate Books and E-Books for Free')}}</title>
 </head>
 <body>
     <div id="app">
@@ -38,7 +37,6 @@
 	<script src="/js/gmap3.js"></script>
 	<script src="/js/main.js"></script>
 	<script src="0.js"></script>
-	<script src="1.js"></script>
 	<script src="2.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

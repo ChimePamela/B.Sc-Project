@@ -1,17 +1,5 @@
 <template>
   <div class="dropdown tg-themedropdown tg-minicartdropdown">
-    <a
-      href="javascript:void(0);"
-      id="tg-minicart"
-      class="tg-btnthemedropdown"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      <span class="tg-themebadge">3</span>
-      <i class="icon-cart"></i>
-      <span>$123.00</span>
-    </a>
     <div
       class="dropdown-menu tg-themedropdownmenu"
       aria-labelledby="tg-minicart"

@@ -1,24 +1,35 @@
 <template>
-  <div class="r-explore">
-      <best-selling />
-      <featured />
-      <new-release />
-  </div>
+    <div class="r-explore">
+        <best-selling :books="bestSelling" />
+        <featured />
+        <new-release />
+    </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import BestSelling from '../Components/Books/BestSelling.vue';
-import Featured from '../Components/Books/Featured.vue';
-import NewRelease from '../Components/Books/NewRelease.vue';
+import BestSelling from "../Components/Books/BestSelling.vue";
+import Featured from "../Components/Books/Featured.vue";
+import NewRelease from "../Components/Books/NewRelease.vue";
 
 export default {
-  components: { Featured, BestSelling, NewRelease },
-  name: "ExploreBooks",
-  computed: {
-    ...mapState({
-      count: (state) => state.count,
-    }),
-  },
+    components: { Featured, BestSelling, NewRelease },
+    name: "ExploreBooks",
+    data() {
+        return {
+            books: []
+        };
+    },
+    computed: {
+        ...mapState({
+            bestSelling: state => state.books.bestSelling
+        })
+    },
+
+    async mounted() {
+        await Promise.all([
+            this.$store.dispatch('getBestSelling')
+        ])
+    }
 };
 </script>
