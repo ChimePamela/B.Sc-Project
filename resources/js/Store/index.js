@@ -6,7 +6,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         books: {
-            bestSelling: [],
+            topRated: [],
         },
         user: {
             profile: null
@@ -14,8 +14,8 @@ const store = new Vuex.Store({
         isLoggedIn: false
     },
     mutations: {
-        SET_BEST_SELLING(state, payload) {
-            state.books.bestSelling = payload
+        SET_TOP_RATED(state, payload) {
+            state.books.topRated = payload
         },
         SET_LOGIN_DATA(state, payload) {
             state.user.profile = payload
@@ -33,10 +33,10 @@ const store = new Vuex.Store({
                     return data.data
                 });
         },
-        getBestSelling({ commit }) {
-            return axios.get("/app/best-selling")
+        getTopRated({ commit }) {
+            return axios.get("/app/top-rated")
                 .then(({ data }) => {
-                    commit('SET_BEST_SELLING', data.data);
+                    commit('SET_TOP_RATED', data.data);
                     return data.data;
                 });
         }

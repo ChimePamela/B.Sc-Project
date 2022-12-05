@@ -54,15 +54,15 @@
                 class="collapse navbar-collapse tg-navigation"
               >
                 <ul>
-                    <NavCategories />
                   <li class="current-menu-item">
-                    <a href="javascript:void(0);">Explore Books</a>
+                    <a href="javascript:void(0);">Home</a>
+                  </li>
+                  <NavCategories />
+                  <li>
+                    <a href="javascript:void(0);">All Books</a>
                   </li>
                   <li>
                     <a href="javascript:void(0);">Authors</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">Top Rated</a>
                   </li>
                   <UserMenu />
                 </ul>

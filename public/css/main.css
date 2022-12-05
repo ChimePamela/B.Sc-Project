@@ -1880,7 +1880,7 @@ li.menu-item-has-mega-menu { position: static; }
 .tg-bookwriter a {color: #666;}
 .tg-bestsellingbooks .tg-postbookcontent .tg-stars {
 	float: left;
-	margin: 0 0 20px;
+	margin: 0 0 5px;
 }
 .tg-bookprice {
 	width: 100%;

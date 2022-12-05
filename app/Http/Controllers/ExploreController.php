@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ExploreController extends Controller
 {
@@ -13,13 +12,14 @@ class ExploreController extends Controller
      *
      * @return JsonResponse
      */
-    public function get_best_selling(): JsonResponse
+    public function get_top_rated(): JsonResponse
     {
-        $books = Book::with('author')->with('reviews')->where('is_best_selling', '=', 1)->get();
+        $books = Book::with('author')->with('category')->with('reviews')->where('is_top_rated', '=', 1)->get();
 
         return response()->json([
             'error' => false,
             'data' => $books
         ]);
     }
+
 }

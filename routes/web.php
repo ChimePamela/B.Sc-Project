@@ -19,7 +19,7 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
 Route::prefix('app')->group(function () {
-    Route::get('best-selling', [ExploreController::class, 'get_best_selling']);
+    Route::get('top-rated', [ExploreController::class, 'get_top_rated']);
 });
 
 Route::get('/{any?}', function() {

@@ -38583,7 +38583,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     books: {
-      bestSelling: []
+      topRated: []
     },
     user: {
       profile: null
@@ -38591,8 +38591,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     isLoggedIn: false
   },
   mutations: {
-    SET_BEST_SELLING: function SET_BEST_SELLING(state, payload) {
-      state.books.bestSelling = payload;
+    SET_TOP_RATED: function SET_TOP_RATED(state, payload) {
+      state.books.topRated = payload;
     },
     SET_LOGIN_DATA: function SET_LOGIN_DATA(state, payload) {
       state.user.profile = payload;
@@ -38612,11 +38612,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         return data.data;
       });
     },
-    getBestSelling: function getBestSelling(_ref3) {
+    getTopRated: function getTopRated(_ref3) {
       var commit = _ref3.commit;
-      return axios.get("/app/best-selling").then(function (_ref4) {
+      return axios.get("/app/top-rated").then(function (_ref4) {
         var data = _ref4.data;
-        commit('SET_BEST_SELLING', data.data);
+        commit('SET_TOP_RATED', data.data);
         return data.data;
       });
     }
