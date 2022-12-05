@@ -22,7 +22,7 @@ class Book extends Model
         'published_date',
         'for_sale',
         'is_featured',
-        'is_best_selling',
+        'is_top_rated',
         'price',
     ];
 
@@ -47,7 +47,7 @@ class Book extends Model
     }
 
     public function category() {
-        return $this->belongsTo(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function ratings()

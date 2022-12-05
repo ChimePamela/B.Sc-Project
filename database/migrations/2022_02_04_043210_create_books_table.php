@@ -24,7 +24,7 @@ class CreateBooksTable extends Migration
             $table->date('published_date');
             $table->boolean('for_sale')->default(1);
             $table->boolean('is_featured')->default(0);
-            $table->boolean('is_best_selling')->default(0);
+            $table->boolean('is_top_rated')->default(0);
             $table->double('price')->default(0.0);
             $table->timestamps();
         });
