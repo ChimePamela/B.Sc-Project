@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { truncate } from '../../Helpers/format'
+
 export default {
   name: "Book",
   props: {
@@ -43,19 +45,13 @@ export default {
   },
   computed: {
     title() {
-        return this.truncate(this.book.title)
+        return truncate(this.book.title)
     },
     author() {
-        return this.truncate(this.book.author.name)
+        return truncate(this.book.author.name)
     },
     category() {
-        return this.truncate(this.book.category.name)
-    }
-  },
-  methods: {
-    truncate(str) {
-        const MAX = 20
-        return str.length > MAX ? `${str.substr(0, MAX)}...` : str
+        return truncate(this.book.category.name)
     }
   },
 };

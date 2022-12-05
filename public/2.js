@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Helpers_format__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Helpers/format */ "./resources/js/Helpers/format.js");
 //
 //
 //
@@ -46,6 +47,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Book",
   props: {
@@ -53,19 +55,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     title: function title() {
-      return this.truncate(this.book.title);
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.title);
     },
     author: function author() {
-      return this.truncate(this.book.author.name);
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.author.name);
     },
     category: function category() {
-      return this.truncate(this.book.category.name);
-    }
-  },
-  methods: {
-    truncate: function truncate(str) {
-      var MAX = 20;
-      return str.length > MAX ? "".concat(str.substr(0, MAX), "...") : str;
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.category.name);
     }
   }
 });
@@ -81,6 +77,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -126,12 +137,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "FeaturedBook"
+  name: "FeaturedBook",
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    featured: function featured(state) {
+      return state.books.featured;
+    }
+  })), {}, {
+    title: function title() {
+      return this.featured ? this.featured.title : '';
+    },
+    author: function author() {
+      return this.featured ? this.featured.author.name : '';
+    }
+  }),
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch("getFeatured");
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
 });
 
 /***/ }),
@@ -572,89 +611,91 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", { staticClass: "tg-bglight tg-haslayout" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "tg-featureditm" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-8 col-lg-8" }, [
+            _c("div", { staticClass: "tg-featureditmcontent" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "tg-booktitle" }, [
+                _c("h3", [
+                  _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                    _vm._v(_vm._s(_vm.title))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "tg-bookwriter" }, [
+                _vm._v("By: "),
+                _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                  _vm._v(_vm._s(_vm.author))
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "tg-bglight tg-haslayout" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "tg-featureditm" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs"
-              },
-              [
-                _c("figure", [
-                  _c("img", {
-                    attrs: {
-                      src: "images/img-02.png",
-                      alt: "image description"
-                    }
-                  })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-xs-12 col-sm-12 col-md-8 col-lg-8" },
-              [
-                _c("div", { staticClass: "tg-featureditmcontent" }, [
-                  _c("div", { staticClass: "tg-themetagbox" }, [
-                    _c("span", { staticClass: "tg-themetag" }, [
-                      _vm._v("featured")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tg-booktitle" }, [
-                    _c("h3", [
-                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                        _vm._v("Things To Know About Green Flat Design")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "tg-bookwriter" }, [
-                    _vm._v("By: "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v("Farrah Whisenhunt")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "tg-stars" }, [_c("span")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tg-priceandbtn" }, [
-                    _c("span", { staticClass: "tg-bookprice" }, [
-                      _c("ins", [_vm._v("$23.18")]),
-                      _vm._v(" "),
-                      _c("del", [_vm._v("$30.20")])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "tg-btn tg-btnstyletwo tg-active",
-                        attrs: { href: "javascript:void(0);" }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-shopping-basket" }),
-                        _vm._v(" "),
-                        _c("em", [_vm._v("Add To Basket")])
-                      ]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ])
+    return _c(
+      "div",
+      {
+        staticClass: "col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs"
+      },
+      [
+        _c("figure", [
+          _c("img", {
+            attrs: { src: "images/img-02.png", alt: "image description" }
+          })
         ])
-      ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tg-themetagbox" }, [
+      _c("span", { staticClass: "tg-themetag" }, [_vm._v("featured")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "tg-stars" }, [_c("span")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tg-priceandbtn" }, [
+      _c(
+        "a",
+        {
+          staticClass: "tg-btn tg-btnstyletwo tg-active",
+          attrs: { href: "javascript:void(0);" }
+        },
+        [
+          _c("i", { staticClass: "fa fa-shopping-basket" }),
+          _vm._v(" "),
+          _c("em", [_vm._v("Add To Wishlist")])
+        ]
+      )
     ])
   }
 ]
@@ -1389,6 +1430,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TopRated_vue_vue_type_template_id_4df05e1f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Helpers/format.js":
+/*!****************************************!*\
+  !*** ./resources/js/Helpers/format.js ***!
+  \****************************************/
+/*! exports provided: truncate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
+var truncate = function truncate(str) {
+  var MAX = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
+  return str.length > MAX ? "".concat(str.substr(0, MAX), "...") : str;
+};
 
 /***/ }),
 

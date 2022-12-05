@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     state: {
         books: {
             topRated: [],
+            featured: null
         },
         user: {
             profile: null
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
     mutations: {
         SET_TOP_RATED(state, payload) {
             state.books.topRated = payload
+        },
+        SET_FEATURED(state, payload) {
+            state.books.featured = payload
         },
         SET_LOGIN_DATA(state, payload) {
             state.user.profile = payload
@@ -39,6 +43,13 @@ const store = new Vuex.Store({
                     commit('SET_TOP_RATED', data.data);
                     return data.data;
                 });
+        },
+        getFeatured({ commit }) {
+            return axios.get('/app/featured')
+                .then(({ data }) => {
+                    commit('SET_FEATURED', data.data)
+                    return data.data;
+                })
         }
     }
 })

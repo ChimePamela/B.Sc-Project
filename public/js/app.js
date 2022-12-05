@@ -38583,7 +38583,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     books: {
-      topRated: []
+      topRated: [],
+      featured: null
     },
     user: {
       profile: null
@@ -38593,6 +38594,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   mutations: {
     SET_TOP_RATED: function SET_TOP_RATED(state, payload) {
       state.books.topRated = payload;
+    },
+    SET_FEATURED: function SET_FEATURED(state, payload) {
+      state.books.featured = payload;
     },
     SET_LOGIN_DATA: function SET_LOGIN_DATA(state, payload) {
       state.user.profile = payload;
@@ -38617,6 +38621,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return axios.get("/app/top-rated").then(function (_ref4) {
         var data = _ref4.data;
         commit('SET_TOP_RATED', data.data);
+        return data.data;
+      });
+    },
+    getFeatured: function getFeatured(_ref5) {
+      var commit = _ref5.commit;
+      return axios.get('/app/featured').then(function (_ref6) {
+        var data = _ref6.data;
+        commit('SET_FEATURED', data.data);
         return data.data;
       });
     }

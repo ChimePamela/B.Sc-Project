@@ -18,25 +18,21 @@
               <div class="tg-booktitle">
                 <h3>
                   <a href="javascript:void(0);"
-                    >Things To Know About Green Flat Design</a
+                    >{{ title }}</a
                   >
                 </h3>
               </div>
               <span class="tg-bookwriter"
-                >By: <a href="javascript:void(0);">Farrah Whisenhunt</a></span
+                >By: <a href="javascript:void(0);">{{ author }}</a></span
               >
               <span class="tg-stars"><span></span></span>
               <div class="tg-priceandbtn">
-                <span class="tg-bookprice">
-                  <ins>$23.18</ins>
-                  <del>$30.20</del>
-                </span>
                 <a
                   class="tg-btn tg-btnstyletwo tg-active"
                   href="javascript:void(0);"
                 >
                   <i class="fa fa-shopping-basket"></i>
-                  <em>Add To Basket</em>
+                  <em>Add To Wishlist</em>
                 </a>
               </div>
             </div>
@@ -48,7 +44,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: "FeaturedBook",
+  computed: {
+    ...mapState({
+      featured: (state) => state.books.featured,
+    }),
+    title() {
+        return this.featured ? this.featured.title : ''
+    },
+    author() {
+        return this.featured ? this.featured.author.name : ''
+    }
+  },
+  async mounted() {
+    await this.$store.dispatch("getFeatured");
+  },
 };
 </script>

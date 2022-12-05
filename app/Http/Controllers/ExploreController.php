@@ -22,4 +22,18 @@ class ExploreController extends Controller
         ]);
     }
 
+    /**
+     * get featured book
+     *
+     * @return JsonResponse
+     */
+    public function get_featured(): JsonResponse
+    {
+        $featured = Book::with('author')->with('category')->with('reviews')->where('is_featured', '=', 1)->first();
+
+        return response()->json([
+            'error' => false,
+            'data' => $featured
+        ]);
+    }
 }
