@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Nagy\LaravelRating\Traits\Rate\Rateable;
+// use willvincent\Rateable\Rateable;
 
 class Book extends Model
 {
-    use HasFactory, Rateable;
+    // use HasFactory, Rateable;
+    use HasFactory;
 
     protected $fillable = [
         'author_id',
@@ -48,10 +49,5 @@ class Book extends Model
 
     public function category() {
         return $this->belongsTo(Category::class);
-    }
-
-    public function ratings()
-    {
-        return $this->ratingsCount();
     }
 }

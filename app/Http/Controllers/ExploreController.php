@@ -36,4 +36,9 @@ class ExploreController extends Controller
             'data' => $featured
         ]);
     }
+
+    // public function get_latest(): JsonResponse
+    // {
+    //     $latest = Book::wh
+    // }
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class="tg-bglight tg-haslayout">
+  <section v-if="featured" class="tg-bglight tg-haslayout">
     <div class="container">
       <div class="row">
         <div class="tg-featureditm">
