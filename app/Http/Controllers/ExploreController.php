@@ -37,8 +37,18 @@ class ExploreController extends Controller
         ]);
     }
 
-    // public function get_latest(): JsonResponse
-    // {
-    //     $latest = Book::wh
-    // }
+    /**
+     * get latest books
+     *
+     * @return JsonResponse
+     */
+    public function get_latest(): JsonResponse
+    {
+        $latest = Book::with('author')->with('category')->with('reviews')->orderBy('created_at', 'desc')->get();
+
+        return response()->json([
+            'error' => false,
+            'data' => $latest
+        ]);
+    }
 }

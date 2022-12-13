@@ -38584,6 +38584,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     books: {
       topRated: [],
+      latest: [],
       featured: null
     },
     user: {
@@ -38597,6 +38598,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     SET_FEATURED: function SET_FEATURED(state, payload) {
       state.books.featured = payload;
+    },
+    SET_LATEST: function SET_LATEST(state, payload) {
+      state.books.latest = payload;
     },
     SET_LOGIN_DATA: function SET_LOGIN_DATA(state, payload) {
       state.user.profile = payload;
@@ -38629,6 +38633,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return axios.get('/app/featured').then(function (_ref6) {
         var data = _ref6.data;
         commit('SET_FEATURED', data.data);
+        return data.data;
+      });
+    },
+    getLatest: function getLatest(_ref7) {
+      var commit = _ref7.commit;
+      return axios.get('/app/latest').then(function (_ref8) {
+        var data = _ref8.data;
+        commit('SET_LATEST', data.data);
         return data.data;
       });
     }

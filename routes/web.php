@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExploreController;
 
@@ -20,8 +21,10 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('app')->group(function () {
+    Route::get('categories', [CategoryController::class, 'get_all_categories']);
     Route::get('top-rated', [ExploreController::class, 'get_top_rated']);
     Route::get('featured', [ExploreController::class, 'get_featured']);
+    Route::get('latest', [ExploreController::class, 'get_latest']);
 });
 
 Route::get('/{any?}', function() {

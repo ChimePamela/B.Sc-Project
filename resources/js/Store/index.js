@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     state: {
         books: {
             topRated: [],
+            latest: [],
             featured: null
         },
         user: {
@@ -21,9 +22,12 @@ const store = new Vuex.Store({
         SET_FEATURED(state, payload) {
             state.books.featured = payload
         },
+        SET_LATEST(state, payload) {
+            state.books.latest = payload
+        },
         SET_LOGIN_DATA(state, payload) {
             state.user.profile = payload
-        }
+        },
     },
     actions: {
         register(_, payload) {
@@ -48,6 +52,13 @@ const store = new Vuex.Store({
             return axios.get('/app/featured')
                 .then(({ data }) => {
                     commit('SET_FEATURED', data.data)
+                    return data.data;
+                })
+        },
+        getLatest({ commit }) {
+            return axios.get('/app/latest')
+                .then(({ data }) => {
+                    commit('SET_LATEST', data.data)
                     return data.data;
                 })
         }

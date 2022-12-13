@@ -7,7 +7,7 @@
             class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs"
           >
             <figure>
-              <img src="images/img-02.png" alt="image description" />
+              <img width="300" :src="imgUrl" alt="image description" />
             </figure>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -57,6 +57,9 @@ export default {
     },
     author() {
         return this.featured ? this.featured.author.name : ''
+    },
+    imgUrl() {
+        return this.featured ? this.featured.image_url : ''
     }
   },
   async mounted() {
