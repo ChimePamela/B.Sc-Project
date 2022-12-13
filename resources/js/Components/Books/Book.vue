@@ -42,16 +42,20 @@ export default {
   name: "Book",
   props: {
     book: Object,
+    maxChar: {
+        type: Number,
+        default: 20
+    }
   },
   computed: {
     title() {
-        return truncate(this.book.title)
+        return truncate(this.book.title, this.maxChar)
     },
     author() {
-        return truncate(this.book.author.name)
+        return truncate(this.book.author.name, this.maxChar)
     },
     category() {
-        return truncate(this.book.category.name)
+        return truncate(this.book.category.name, this.maxChar)
     }
   },
 };

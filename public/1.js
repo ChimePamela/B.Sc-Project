@@ -51,17 +51,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Book",
   props: {
-    book: Object
+    book: Object,
+    maxChar: {
+      type: Number,
+      "default": 20
+    }
   },
   computed: {
     title: function title() {
-      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.title);
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.title, this.maxChar);
     },
     author: function author() {
-      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.author.name);
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.author.name, this.maxChar);
     },
     category: function category() {
-      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.category.name);
+      return Object(_Helpers_format__WEBPACK_IMPORTED_MODULE_0__["truncate"])(this.book.category.name, this.maxChar);
     }
   }
 });
@@ -716,7 +720,7 @@ var render = function() {
                       key: i,
                       staticClass: "col-xs-4 col-sm-4 col-md-6 col-lg-4"
                     },
-                    [_c("Book", { attrs: { book: book } })],
+                    [_c("Book", { attrs: { maxChar: 15, book: book } })],
                     1
                   )
                 }),

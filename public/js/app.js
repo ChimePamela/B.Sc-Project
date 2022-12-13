@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppFooter: _Components_AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppNavbar: function AppNavbar() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
     }
   }
 });
@@ -38587,6 +38587,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       latest: [],
       featured: null
     },
+    categories: [],
     user: {
       profile: null
     },
@@ -38601,6 +38602,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     SET_LATEST: function SET_LATEST(state, payload) {
       state.books.latest = payload;
+    },
+    SET_CATEGORIES: function SET_CATEGORIES(state, payload) {
+      state.categories = payload;
     },
     SET_LOGIN_DATA: function SET_LOGIN_DATA(state, payload) {
       state.user.profile = payload;
@@ -38620,26 +38624,34 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         return data.data;
       });
     },
-    getTopRated: function getTopRated(_ref3) {
+    getCategories: function getCategories(_ref3) {
       var commit = _ref3.commit;
-      return axios.get("/app/top-rated").then(function (_ref4) {
+      return axios.get('/app/categories').then(function (_ref4) {
         var data = _ref4.data;
+        commit('SET_CATEGORIES', data.data);
+        return data.data;
+      });
+    },
+    getTopRated: function getTopRated(_ref5) {
+      var commit = _ref5.commit;
+      return axios.get("/app/top-rated").then(function (_ref6) {
+        var data = _ref6.data;
         commit('SET_TOP_RATED', data.data);
         return data.data;
       });
     },
-    getFeatured: function getFeatured(_ref5) {
-      var commit = _ref5.commit;
-      return axios.get('/app/featured').then(function (_ref6) {
-        var data = _ref6.data;
+    getFeatured: function getFeatured(_ref7) {
+      var commit = _ref7.commit;
+      return axios.get('/app/featured').then(function (_ref8) {
+        var data = _ref8.data;
         commit('SET_FEATURED', data.data);
         return data.data;
       });
     },
-    getLatest: function getLatest(_ref7) {
-      var commit = _ref7.commit;
-      return axios.get('/app/latest').then(function (_ref8) {
-        var data = _ref8.data;
+    getLatest: function getLatest(_ref9) {
+      var commit = _ref9.commit;
+      return axios.get('/app/latest').then(function (_ref10) {
+        var data = _ref10.data;
         commit('SET_LATEST', data.data);
         return data.data;
       });

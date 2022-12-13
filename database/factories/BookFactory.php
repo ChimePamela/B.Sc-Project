@@ -27,7 +27,7 @@ class BookFactory extends Factory
             'isbn' => $this->faker->text(10),
             'title' => $title,
             'image_url' => $this->faker->imageUrl(800, 1130, 'book', true, $title),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 4),
             'description' => $this->faker->realText(),
             'is_top_rated' => $this->faker->numberBetween(0, 2),
             'published_date' => $this->faker->dateTime(),

@@ -26,7 +26,7 @@
                                     :key="i"
                                     class="col-xs-4 col-sm-4 col-md-6 col-lg-4"
                                 >
-                                    <Book :book="book" />
+                                    <Book :maxChar="15" :book="book" />
                                 </div>
                             </div>
                         </div>

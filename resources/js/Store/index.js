@@ -10,6 +10,7 @@ const store = new Vuex.Store({
             latest: [],
             featured: null
         },
+        categories: [],
         user: {
             profile: null
         },
@@ -24,6 +25,9 @@ const store = new Vuex.Store({
         },
         SET_LATEST(state, payload) {
             state.books.latest = payload
+        },
+        SET_CATEGORIES(state, payload) {
+            state.categories = payload
         },
         SET_LOGIN_DATA(state, payload) {
             state.user.profile = payload
@@ -40,6 +44,13 @@ const store = new Vuex.Store({
                     commit('SET_LOGIN_DATA', data.data)
                     return data.data
                 });
+        },
+        getCategories({ commit }) {
+            return axios.get('/app/categories')
+                .then(({ data }) => {
+                    commit('SET_CATEGORIES', data.data)
+                    return data.data;
+                })
         },
         getTopRated({ commit }) {
             return axios.get("/app/top-rated")

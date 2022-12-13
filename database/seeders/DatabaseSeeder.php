@@ -14,8 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(3)->create();
-        \App\Models\Book::factory(50)->create();
+        \App\Models\Book::factory(20)->create();
         \App\Models\Author::factory(10)->create();
-        \App\Models\Category::factory(10)->create();
+
+        // seed categories
+        $categories = ['Science', 'Languages', 'Health Books', 'Novels'];
+        foreach ($categories as $name) {
+            \App\Models\Category::factory()->state([
+                'name' => $name
+            ])->create();
+        }
     }
 }
