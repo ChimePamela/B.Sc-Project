@@ -853,9 +853,9 @@ var render = function() {
     [
       _c("TopRated"),
       _vm._v(" "),
-      _c("featured"),
+      _c("Featured"),
       _vm._v(" "),
-      _c("new-release")
+      _c("NewRelease")
     ],
     1
   )

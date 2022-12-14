@@ -1,5 +1,5 @@
 <template>
-  <li class="menu-item-has-children current-menu-item">
+  <li class="menu-item-has-children">
     <div class="tg-userlogin">
       <span>Hi, Amarachi</span>
       <figure>
@@ -10,7 +10,7 @@
     </div>
     <ul class="sub-menu">
       <li>
-        <a href="aboutus.html">My Profile</a>
+        <a href="aboutus.html">My Wishlist</a>
       </li>
     </ul>
   </li>

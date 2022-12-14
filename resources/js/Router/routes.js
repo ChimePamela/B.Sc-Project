@@ -1,14 +1,19 @@
 const routes = [
-  {
-    path: '',
-    component: () => import('../Pages/ExploreBooks.vue'),
-    name: 'explore'
-  },
-  {
-    path: '/about',
-    component: () => import('../Pages/About.vue'),
-    name: 'about'
-  },
+    {
+        path: '',
+        component: () => import('../Pages/ExploreBooks.vue'),
+        name: 'explore'
+    },
+    {
+        path: '/books',
+        component: () => import('../Pages/BookList.vue'),
+        name: 'books'
+    },
+    {
+        path: '/authors',
+        component: () => import('../Pages/Authors.vue'),
+        name: 'authors'
+    },
     {
         path: '/auth',
         component: () => import('../Pages/Auth.vue'),

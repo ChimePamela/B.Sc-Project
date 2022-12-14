@@ -5,8 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 
-class ExploreController extends Controller
+class BookController extends Controller
 {
+    /**
+     * get all books in DB
+     *
+     * @return JsonResponse
+     */
+    public function get_all_books(): JsonResponse
+    {
+        $books = Book::with('author')->with('category')->with('reviews')->get();
+        return response()->json([
+            'error' => false,
+            'data' => $books
+        ]);
+    }
+
     /**
      * get best selling books
      *

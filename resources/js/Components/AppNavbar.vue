@@ -54,16 +54,10 @@
                 class="collapse navbar-collapse tg-navigation"
               >
                 <ul>
-                  <li class="current-menu-item">
-                    <a href="javascript:void(0);">Home</a>
+                  <li v-for="(item, index) in menuItems" :key="index" :class="isActive(item.name)">
+                    <router-link :to="{ name: item.name }">{{ item.label }}</router-link>
                   </li>
                   <NavCategories />
-                  <li>
-                    <a href="javascript:void(0);">All Books</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">Authors</a>
-                  </li>
                   <UserMenu />
                 </ul>
               </div>
@@ -83,5 +77,22 @@ import UserMenu from "./User/Menu.vue";
 export default {
   components: { Cart, NavCategories, UserMenu },
   name: "AppNavbar",
+  data() {
+    return {
+      menuItems: [
+        { label: "Explore", name: "explore" },
+        { label: "All Books", name: "books" },
+        { label: "Authors", name: "authors" },
+      ],
+    };
+  },
+  mounted() {
+    console.log(this.$route.name);
+  },
+  methods: {
+    isActive(name) {
+        return name === this.$route.name ? 'current-menu-item' : false
+    }
+  }
 };
 </script>

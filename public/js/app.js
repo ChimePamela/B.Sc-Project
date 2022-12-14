@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppFooter: _Components_AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppNavbar: function AppNavbar() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
     }
   }
 });
@@ -2058,9 +2058,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -20644,15 +20641,6 @@ var staticRenderFns = [
                 "div",
                 { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" },
                 [
-                  _c("span", { staticClass: "tg-paymenttype" }, [
-                    _c("img", {
-                      attrs: {
-                        src: "images/paymenticon.png",
-                        alt: "image description"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
                   _c("span", { staticClass: "tg-copyright" }, [
                     _vm._v("2022 All Rights Reserved By © Read-It Library")
                   ])
@@ -38549,15 +38537,21 @@ var routes = [{
   },
   name: 'explore'
 }, {
-  path: '/about',
+  path: '/books',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../Pages/About.vue */ "./resources/js/Pages/About.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
   },
-  name: 'about'
+  name: 'books'
+}, {
+  path: '/authors',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../Pages/Authors.vue */ "./resources/js/Pages/Authors.vue"));
+  },
+  name: 'authors'
 }, {
   path: '/auth',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
   },
   name: 'auth'
 }];
@@ -38583,6 +38577,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     books: {
+      all: [],
       topRated: [],
       latest: [],
       featured: null
@@ -38594,6 +38589,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     isLoggedIn: false
   },
   mutations: {
+    SET_ALL_BOOKS: function SET_ALL_BOOKS(state, payload) {
+      state.books.all = payload;
+    },
     SET_TOP_RATED: function SET_TOP_RATED(state, payload) {
       state.books.topRated = payload;
     },
@@ -38624,34 +38622,42 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         return data.data;
       });
     },
-    getCategories: function getCategories(_ref3) {
+    getAllBooks: function getAllBooks(_ref3) {
       var commit = _ref3.commit;
-      return axios.get('/app/categories').then(function (_ref4) {
+      return axios.get('/app/all-books').then(function (_ref4) {
         var data = _ref4.data;
+        commit('SET_ALL_BOOKS', data.data);
+        return data.data;
+      });
+    },
+    getCategories: function getCategories(_ref5) {
+      var commit = _ref5.commit;
+      return axios.get('/app/categories').then(function (_ref6) {
+        var data = _ref6.data;
         commit('SET_CATEGORIES', data.data);
         return data.data;
       });
     },
-    getTopRated: function getTopRated(_ref5) {
-      var commit = _ref5.commit;
-      return axios.get("/app/top-rated").then(function (_ref6) {
-        var data = _ref6.data;
+    getTopRated: function getTopRated(_ref7) {
+      var commit = _ref7.commit;
+      return axios.get("/app/top-rated").then(function (_ref8) {
+        var data = _ref8.data;
         commit('SET_TOP_RATED', data.data);
         return data.data;
       });
     },
-    getFeatured: function getFeatured(_ref7) {
-      var commit = _ref7.commit;
-      return axios.get('/app/featured').then(function (_ref8) {
-        var data = _ref8.data;
+    getFeatured: function getFeatured(_ref9) {
+      var commit = _ref9.commit;
+      return axios.get('/app/featured').then(function (_ref10) {
+        var data = _ref10.data;
         commit('SET_FEATURED', data.data);
         return data.data;
       });
     },
-    getLatest: function getLatest(_ref9) {
-      var commit = _ref9.commit;
-      return axios.get('/app/latest').then(function (_ref10) {
-        var data = _ref10.data;
+    getLatest: function getLatest(_ref11) {
+      var commit = _ref11.commit;
+      return axios.get('/app/latest').then(function (_ref12) {
+        var data = _ref12.data;
         commit('SET_LATEST', data.data);
         return data.data;
       });

@@ -83,12 +83,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -98,7 +92,29 @@ __webpack_require__.r(__webpack_exports__);
     NavCategories: _Books_NavCategories_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     UserMenu: _User_Menu_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  name: "AppNavbar"
+  name: "AppNavbar",
+  data: function data() {
+    return {
+      menuItems: [{
+        label: "Explore",
+        name: "explore"
+      }, {
+        label: "All Books",
+        name: "books"
+      }, {
+        label: "Authors",
+        name: "authors"
+      }]
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.$route.name);
+  },
+  methods: {
+    isActive: function isActive(name) {
+      return name === this.$route.name ? 'current-menu-item' : false;
+    }
+  }
 });
 
 /***/ }),
@@ -112,6 +128,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -123,12 +154,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NavCategories",
-  data: function data() {
-    return {
-      categories: [1, 2]
-    };
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+    categories: function categories(state) {
+      return state.categories;
+    }
+  })),
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getCategories');
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -308,17 +363,26 @@ var render = function() {
                       _c(
                         "ul",
                         [
-                          _vm._m(3),
+                          _vm._l(_vm.menuItems, function(item, index) {
+                            return _c(
+                              "li",
+                              { key: index, class: _vm.isActive(item.name) },
+                              [
+                                _c(
+                                  "router-link",
+                                  { attrs: { to: { name: item.name } } },
+                                  [_vm._v(_vm._s(item.label))]
+                                )
+                              ],
+                              1
+                            )
+                          }),
                           _vm._v(" "),
                           _c("NavCategories"),
                           _vm._v(" "),
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _vm._m(5),
-                          _vm._v(" "),
                           _c("UserMenu")
                         ],
-                        1
+                        2
                       )
                     ]
                   )
@@ -394,30 +458,6 @@ var staticRenderFns = [
         ]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "current-menu-item" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [_vm._v("Home")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [_vm._v("All Books")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [_vm._v("Authors")])
-    ])
   }
 ]
 render._withStripped = true
@@ -449,7 +489,9 @@ var render = function() {
       { staticClass: "sub-menu" },
       _vm._l(_vm.categories, function(category, index) {
         return _c("li", { key: index, staticClass: "current-menu-item" }, [
-          _c("a", { attrs: { href: "index.html" } }, [_vm._v("SciFi")])
+          _c("a", { attrs: { href: "index.html" } }, [
+            _vm._v(_vm._s(category.name))
+          ])
         ])
       }),
       0
@@ -646,32 +688,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      { staticClass: "menu-item-has-children current-menu-item" },
-      [
-        _c("div", { staticClass: "tg-userlogin" }, [
-          _c("span", [_vm._v("Hi, Amarachi")]),
-          _vm._v(" "),
-          _c("figure", [
-            _c("a", { attrs: { href: "javascript:void(0);" } }, [
-              _c("img", {
-                attrs: {
-                  src: "images/users/img-01.jpg",
-                  alt: "image description"
-                }
-              })
-            ])
-          ])
-        ]),
+    return _c("li", { staticClass: "menu-item-has-children" }, [
+      _c("div", { staticClass: "tg-userlogin" }, [
+        _c("span", [_vm._v("Hi, Amarachi")]),
         _vm._v(" "),
-        _c("ul", { staticClass: "sub-menu" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "aboutus.html" } }, [_vm._v("My Profile")])
+        _c("figure", [
+          _c("a", { attrs: { href: "javascript:void(0);" } }, [
+            _c("img", {
+              attrs: {
+                src: "images/users/img-01.jpg",
+                alt: "image description"
+              }
+            })
           ])
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "sub-menu" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "aboutus.html" } }, [_vm._v("My Wishlist")])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true

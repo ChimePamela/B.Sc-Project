@@ -78,9 +78,6 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <span class="tg-paymenttype"
-              ><img src="images/paymenticon.png" alt="image description"
-            /></span>
             <span class="tg-copyright"
               >2022 All Rights Reserved By &copy; Read-It Library</span
             >

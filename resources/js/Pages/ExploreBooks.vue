@@ -1,8 +1,8 @@
 <template>
     <div class="r-explore">
         <TopRated />
-        <featured />
-        <new-release />
+        <Featured />
+        <NewRelease />
     </div>
 </template>
 
