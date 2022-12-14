@@ -71,9 +71,6 @@ export default {
       ],
     };
   },
-  mounted() {
-    console.log(this.$route.name);
-  },
   methods: {
     isActive(name) {
         return name === this.$route.name ? 'current-menu-item' : false

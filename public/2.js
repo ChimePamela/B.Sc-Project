@@ -92,9 +92,6 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  mounted: function mounted() {
-    console.log(this.$route.name);
-  },
   methods: {
     isActive: function isActive(name) {
       return name === this.$route.name ? 'current-menu-item' : false;
@@ -262,6 +259,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -280,8 +284,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "UserMenu"
+  name: "UserMenu",
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    isLoggedIn: function isLoggedIn(state) {
+      return state.isLoggedIn;
+    },
+    profile: function profile(state) {
+      return state.user.profile;
+    }
+  })), {}, {
+    showMenu: function showMenu() {
+      return this.isLoggedIn || this.profile;
+    }
+  })
 });
 
 /***/ }),
@@ -641,33 +658,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.showMenu
+    ? _c("li", { staticClass: "menu-item-has-children" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "menu-item-has-children" }, [
-      _c("div", { staticClass: "tg-userlogin" }, [
-        _c("span", [_vm._v("Hi, Amarachi")]),
-        _vm._v(" "),
-        _c("figure", [
-          _c("a", { attrs: { href: "javascript:void(0);" } }, [
-            _c("img", {
-              attrs: {
-                src: "images/users/img-01.jpg",
-                alt: "image description"
-              }
-            })
-          ])
-        ])
-      ]),
+    return _c("div", { staticClass: "tg-userlogin" }, [
+      _c("span", [_vm._v("Hi, Amarachi")]),
       _vm._v(" "),
-      _c("ul", { staticClass: "sub-menu" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "aboutus.html" } }, [_vm._v("My Wishlist")])
+      _c("figure", [
+        _c("a", { attrs: { href: "javascript:void(0);" } }, [
+          _c("img", {
+            attrs: { src: "images/users/img-01.jpg", alt: "image description" }
+          })
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "sub-menu" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "aboutus.html" } }, [_vm._v("My Wishlist")])
       ])
     ])
   }

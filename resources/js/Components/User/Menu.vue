@@ -1,5 +1,5 @@
 <template>
-  <li class="menu-item-has-children">
+  <li v-if="showMenu" class="menu-item-has-children">
     <div class="tg-userlogin">
       <span>Hi, Amarachi</span>
       <figure>
@@ -17,7 +17,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: "UserMenu",
+  computed: {
+    ...mapState({
+        isLoggedIn: state => state.isLoggedIn,
+        profile: state => state.user.profile
+    }),
+    showMenu() {
+        return this.isLoggedIn || this.profile
+    }
+  },
 };
 </script>

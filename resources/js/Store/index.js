@@ -12,6 +12,7 @@ const store = new Vuex.Store({
             featured: null
         },
         categories: [],
+        authors: [],
         user: {
             profile: null
         },
@@ -20,6 +21,9 @@ const store = new Vuex.Store({
     mutations: {
         SET_ALL_BOOKS(state, payload) {
             state.books.all = payload;
+        },
+        SET_AUTHORS(state, payload) {
+            state.authors = payload;
         },
         SET_TOP_RATED(state, payload) {
             state.books.topRated = payload
@@ -48,6 +52,13 @@ const store = new Vuex.Store({
                     commit('SET_LOGIN_DATA', data.data)
                     return data.data
                 });
+        },
+        getAuthors({ commit }) {
+            return axios.get('/app/authors')
+                .then(({ data }) => {
+                    commit('SET_AUTHORS', data.data)
+                    return data.data
+                })
         },
         getAllBooks({ commit }) {
             return axios.get('/app/all-books')

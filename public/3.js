@@ -134,6 +134,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -141,15 +148,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Book: _Components_Books_Book_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   name: "BookList",
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  data: function data() {
+    return {
+      filterdData: [],
+      searchQuery: ''
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     all: function all(state) {
       return state.books.all;
+    },
+    categories: function categories(state) {
+      return state.categories;
     }
-  })),
+  })), {}, {
+    query: function query() {
+      return this.$route.query;
+    }
+  }),
   mounted: function mounted() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var author;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -158,12 +179,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _this.$store.dispatch("getAllBooks");
 
             case 2:
+              _this.filterdData = _this.all;
+              author = _this.query.author;
+
+              if (author) {
+                _this.searchQuery = author;
+
+                _this.filterBooks(author);
+              }
+
+            case 5:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  methods: {
+    filterBooks: function filterBooks(query) {
+      this.filterdData = this.all.filter(function (item) {
+        return item.author.name.toLowerCase() === query.toLowerCase();
+      });
+    }
   }
 });
 
@@ -303,13 +341,67 @@ var render = function() {
   return _c("section", { staticClass: "tg-sectionspace tg-haslayout" }, [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" }, [
+          _c("div", { staticClass: "tg-sectionhead row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("form", { staticClass: "tg-formtheme tg-formsearch" }, [
+                _c("fieldset", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    staticClass: "typeahead form-control",
+                    attrs: {
+                      type: "search",
+                      name: "search",
+                      placeholder: "Search by title, author, keyword"
+                    },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "select",
+                [
+                  _c("option", { attrs: { disabled: "", selected: "" } }, [
+                    _vm._v("Select Category")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(category, index) {
+                    return _c("option", { key: index }, [
+                      _vm._v(_vm._s(category.name))
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _vm.all.length
           ? _c(
               "div",
               { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" },
-              _vm._l(_vm.all, function(item, index) {
+              _vm._l(_vm.filterdData, function(item, index) {
                 return _c(
                   "div",
                   { key: index, staticClass: "col-md-3 col-lg-3" },
@@ -329,32 +421,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" },
-      [
-        _c("div", { staticClass: "tg-sectionhead row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("form", { staticClass: "tg-formtheme tg-formsearch" }, [
-              _c("fieldset", [
-                _c("input", {
-                  staticClass: "typeahead form-control",
-                  attrs: {
-                    type: "text",
-                    name: "search",
-                    placeholder: "Search by title, author, keyword, ISBN..."
-                  }
-                }),
-                _vm._v(" "),
-                _c("button", { attrs: { type: "submit" } }, [
-                  _c("i", { staticClass: "icon-magnifier" })
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("button", { attrs: { type: "submit" } }, [
+      _c("i", { staticClass: "icon-magnifier" })
+    ])
   }
 ]
 render._withStripped = true

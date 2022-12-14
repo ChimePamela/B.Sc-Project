@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 
@@ -63,6 +64,20 @@ class BookController extends Controller
         return response()->json([
             'error' => false,
             'data' => $latest
+        ]);
+    }
+    /**
+     * get all authors
+     *
+     * @return JsonResponse
+     */
+    public function get_book_authors(): JsonResponse
+    {
+        $authors = Author::all();
+
+        return response()->json([
+            'error' => false,
+            'data' => $authors
         ]);
     }
 }
