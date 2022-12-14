@@ -121,6 +121,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -320,14 +333,25 @@ var staticRenderFns = [
       "div",
       { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" },
       [
-        _c("div", { staticClass: "tg-sectionhead" }, [
-          _c("h2", [_vm._v("All Recommended Books")]),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "tg-btn", attrs: { href: "javascript:void(0);" } },
-            [_vm._v("View All Top rated")]
-          )
+        _c("div", { staticClass: "tg-sectionhead row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("form", { staticClass: "tg-formtheme tg-formsearch" }, [
+              _c("fieldset", [
+                _c("input", {
+                  staticClass: "typeahead form-control",
+                  attrs: {
+                    type: "text",
+                    name: "search",
+                    placeholder: "Search by title, author, keyword, ISBN..."
+                  }
+                }),
+                _vm._v(" "),
+                _c("button", { attrs: { type: "submit" } }, [
+                  _c("i", { staticClass: "icon-magnifier" })
+                ])
+              ])
+            ])
+          ])
         ])
       ]
     )

@@ -68,21 +68,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -334,9 +319,7 @@ var render = function() {
                   { staticClass: "tg-wishlistandcart" },
                   [_c("Cart")],
                   1
-                ),
-                _vm._v(" "),
-                _vm._m(1)
+                )
               ]
             )
           ])
@@ -351,7 +334,7 @@ var render = function() {
               { staticClass: "col-xs-12 col-sm-12 col-md-12 col-lg-12" },
               [
                 _c("nav", { staticClass: "tg-nav", attrs: { id: "tg-nav" } }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -405,29 +388,6 @@ var staticRenderFns = [
         _c("img", {
           attrs: { src: "images/logo.png", alt: "company name here" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tg-searchbox" }, [
-      _c("form", { staticClass: "tg-formtheme tg-formsearch" }, [
-        _c("fieldset", [
-          _c("input", {
-            staticClass: "typeahead form-control",
-            attrs: {
-              type: "text",
-              name: "search",
-              placeholder: "Search by title, author, keyword, ISBN..."
-            }
-          }),
-          _vm._v(" "),
-          _c("button", { attrs: { type: "submit" } }, [
-            _c("i", { staticClass: "icon-magnifier" })
-          ])
-        ])
       ])
     ])
   },

@@ -3,9 +3,22 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="tg-sectionhead">
-            <h2>All Recommended Books</h2>
-            <a class="tg-btn" href="javascript:void(0);">View All Top rated</a>
+          <div class="tg-sectionhead row">
+            <div class="col-md-6">
+                <form class="tg-formtheme tg-formsearch">
+                    <fieldset>
+                    <input
+                        type="text"
+                        name="search"
+                        class="typeahead form-control"
+                        placeholder="Search by title, author, keyword, ISBN..."
+                    />
+                    <button type="submit">
+                        <i class="icon-magnifier"></i>
+                    </button>
+                    </fieldset>
+                </form>
+            </div>
           </div>
         </div>
         <div v-if="all.length" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
