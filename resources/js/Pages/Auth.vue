@@ -62,6 +62,8 @@ export default {
                 if (this.form.name && this.form.email && this.form.password) {
                     this.loading = true
                     await this.$store.dispatch('register', this.form);
+                    this.clearForm()
+                    this.showLogin = true
                 }
             } catch (e) {
                 const msg = this.getErrorMessage(e.response.data.errors);
@@ -73,6 +75,11 @@ export default {
             } finally {
                 this.loading = false
             }
+        },
+        clearForm() {
+            this.form.name = ''
+            this.form.email = ''
+            this.form.password = ''
         },
         getErrorMessage(e) {
             if (e.email) {
@@ -88,7 +95,9 @@ export default {
                 if (this.loginForm.email && this.loginForm.password) {
                     await axios.get('/sanctum/csrf-cookie');
                     const result = await this.$store.dispatch('login', this.loginForm)
-                    console.log(result)
+                    if (result) {
+                        this.$router.replace({ name: 'explore' })
+                    }
                 }
             } catch (e) {
                 const msg = this.getErrorMessage(e.response.data.errors);

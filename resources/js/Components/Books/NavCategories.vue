@@ -3,11 +3,11 @@
         <a href="javascript:void(0);">Categories</a>
         <ul class="sub-menu">
             <li
-                v-for="(category, index) in categories"
+                v-for="({ name }, index) in categories"
                 :key="index"
                 class="current-menu-item"
             >
-                <a href="index.html">{{ category.name }}</a>
+                <router-link :to="{ name: 'books', query: { category: name } }">{{ name }}</router-link>
             </li>
         </ul>
     </li>

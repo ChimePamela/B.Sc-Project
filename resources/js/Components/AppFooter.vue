@@ -7,8 +7,7 @@
             <ul class="tg-clientservices">
               <li class="tg-devlivery">
                 <span class="tg-clientserviceicon"
-                  ><i class="icon-rocket"></i
-                ></span>
+                  ><i class="icon-rocket"></i></span>
                 <div class="tg-titlesubtitle">
                   <h3>Accurate Reviews</h3>
                   <p>By Top Readers</p>

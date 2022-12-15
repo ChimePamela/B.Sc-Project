@@ -1,16 +1,19 @@
 <template>
-  <li v-if="showMenu" class="menu-item-has-children">
+  <li v-if="isLoggedIn" class="menu-item-has-children">
     <div class="tg-userlogin">
-      <span>Hi, Amarachi</span>
+      <span>Hi, {{ profile.name }}</span>
       <figure>
-        <a href="javascript:void(0);"
-          ><img src="images/users/img-01.jpg" alt="image description"
-        /></a>
+        <a href="javascript:void(0);">
+            <img :src="profile.avatar" :alt="profile.name" />
+        </a>
       </figure>
     </div>
     <ul class="sub-menu">
       <li>
-        <a href="aboutus.html">My Wishlist</a>
+        <router-link :to="{ name: 'wishlist' }">My Wishlist</router-link>
+      </li>
+      <li>
+        <a @click="logout" href="javascript:void(0)">Logout</a>
       </li>
     </ul>
   </li>
@@ -21,14 +24,19 @@ import { mapState } from 'vuex';
 
 export default {
   name: "UserMenu",
+  props: {
+    isLoggedIn: Boolean
+  },
   computed: {
     ...mapState({
-        isLoggedIn: state => state.isLoggedIn,
         profile: state => state.user.profile
     }),
-    showMenu() {
-        return this.isLoggedIn || this.profile
-    }
   },
+  methods: {
+    async logout() {
+        await this.$store.dispatch('logout');
+        this.$router.replace({ name: 'auth' });
+    }
+  }
 };
 </script>

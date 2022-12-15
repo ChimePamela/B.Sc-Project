@@ -43,7 +43,10 @@
                     <router-link :to="{ name: item.name }">{{ item.label }}</router-link>
                   </li>
                   <NavCategories />
-                  <UserMenu />
+                  <UserMenu :isLoggedIn="loggedIn" />
+                  <li v-if="!loggedIn">
+                    <router-link :to="{name: 'auth' }"><i class="icon-lock login-icon"></i> Login</router-link>
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -58,6 +61,7 @@
 import NavCategories from "./Books/NavCategories.vue";
 import Cart from "./User/Cart.vue";
 import UserMenu from "./User/Menu.vue";
+import { mapState } from 'vuex';
 
 export default {
   components: { Cart, NavCategories, UserMenu },
@@ -71,6 +75,15 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState({
+        isLoggedIn: state => state.isLoggedIn,
+        profile: state => state.user.profile
+    }),
+    loggedIn() {
+        return this.isLoggedIn || this.profile
+    }
+  },
   methods: {
     isActive(name) {
         return name === this.$route.name ? 'current-menu-item' : false
@@ -78,3 +91,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+    i.login-icon {
+        display: inline-block;
+    }
+</style>

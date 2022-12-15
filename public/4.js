@@ -87,7 +87,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 0;
 
                 if (!(_this.form.name && _this.form.email && _this.form.password)) {
-                  _context.next = 5;
+                  _context.next = 7;
                   break;
                 }
 
@@ -96,11 +96,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('register', _this.form);
 
               case 5:
-                _context.next = 11;
-                break;
+                _this.clearForm();
+
+                _this.showLogin = true;
 
               case 7:
-                _context.prev = 7;
+                _context.next = 13;
+                break;
+
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 msg = _this.getErrorMessage(_context.t0.response.data.errors);
 
@@ -110,18 +115,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   text: msg
                 });
 
-              case 11:
-                _context.prev = 11;
+              case 13:
+                _context.prev = 13;
                 _this.loading = false;
-                return _context.finish(11);
+                return _context.finish(13);
 
-              case 14:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7, 11, 14]]);
+        }, _callee, null, [[0, 9, 13, 16]]);
       }))();
+    },
+    clearForm: function clearForm() {
+      this.form.name = '';
+      this.form.email = '';
+      this.form.password = '';
     },
     getErrorMessage: function getErrorMessage(e) {
       if (e.email) {
@@ -159,7 +169,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 result = _context2.sent;
-                console.log(result);
+
+                if (result) {
+                  _this2.$router.replace({
+                    name: 'explore'
+                  });
+                }
 
               case 8:
                 _context2.next = 14;

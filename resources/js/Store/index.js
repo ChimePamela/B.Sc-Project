@@ -14,9 +14,9 @@ const store = new Vuex.Store({
         categories: [],
         authors: [],
         user: {
-            profile: null
+            profile: JSON.parse(localStorage.getItem('user')) || null
         },
-        isLoggedIn: false
+        isLoggedIn: !!localStorage.getItem('user') || false
     },
     mutations: {
         SET_ALL_BOOKS(state, payload) {
@@ -39,7 +39,14 @@ const store = new Vuex.Store({
         },
         SET_LOGIN_DATA(state, payload) {
             state.user.profile = payload
+            state.isLoggedIn = true
+            localStorage.setItem('user', JSON.stringify(payload))
         },
+        SET_LOGOUT(state) {
+            state.user.profile = null
+            state.isLoggedIn = false
+            localStorage.removeItem('user')
+        }
     },
     actions: {
         register(_, payload) {
@@ -52,6 +59,12 @@ const store = new Vuex.Store({
                     commit('SET_LOGIN_DATA', data.data)
                     return data.data
                 });
+        },
+        logout({ commit }) {
+            return axios.post('/auth/logout')
+                .then(({ data }) => {
+                    commit('SET_LOGOUT')
+                })
         },
         getAuthors({ commit }) {
             return axios.get('/app/authors')

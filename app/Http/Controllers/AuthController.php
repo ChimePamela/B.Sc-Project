@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class AuthController extends Controller
 {
     /**
@@ -20,6 +21,10 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
         $data = (object) $validated;
+
+        $faker = \Faker\Factory::create();
+
+        $data->avatar = $faker->imageUrl();
         $data->password = Hash::make($data->password);
 
         $user = User::create((array) $data);
@@ -53,5 +58,21 @@ class AuthController extends Controller
             'error' => true,
             'msg' => 'login failed'
         ], 400);
+    }
+    /**
+     * logout user
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return response()->json([ 'error' => false ]);
     }
 }

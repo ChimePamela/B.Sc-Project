@@ -141,6 +141,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -151,7 +162,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       filterdData: [],
-      searchQuery: ''
+      searchQuery: "",
+      selectedCategory: ''
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
@@ -166,11 +178,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$route.query;
     }
   }),
+  watch: {
+    query: function query(value) {
+      this.handleFilterChange();
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var author;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -180,15 +196,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               _this.filterdData = _this.all;
-              author = _this.query.author;
 
-              if (author) {
-                _this.searchQuery = author;
+              _this.handleFilterChange();
 
-                _this.filterBooks(author);
-              }
-
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -197,9 +208,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
+    handleCategoryChange: function handleCategoryChange(_ref) {
+      var value = _ref.target.value;
+
+      if (value === 'All') {
+        this.filterdData = this.all;
+      } else {
+        this.$route.query.category = value;
+        this.handleFilterChange();
+      }
+    },
+    handleFilterChange: function handleFilterChange() {
+      var _this$query = this.query,
+          author = _this$query.author,
+          category = _this$query.category;
+
+      if (author) {
+        this.searchQuery = author;
+        this.filterBooks(author);
+      }
+
+      if (category) {
+        this.filterByCategory(category);
+      }
+    },
     filterBooks: function filterBooks(query) {
+      this.filterdData = this.all;
       this.filterdData = this.all.filter(function (item) {
         return item.author.name.toLowerCase() === query.toLowerCase();
+      });
+    },
+    filterByCategory: function filterByCategory(value) {
+      this.filterdData = this.all;
+      this.filterdData = this.all.filter(function (item) {
+        return item.category.name.toLowerCase() === value.toLowerCase();
       });
     }
   }
@@ -380,14 +422,21 @@ var render = function() {
             _c("div", [
               _c(
                 "select",
+                { on: { change: _vm.handleCategoryChange } },
                 [
                   _c("option", { attrs: { disabled: "", selected: "" } }, [
                     _vm._v("Select Category")
                   ]),
                   _vm._v(" "),
+                  _c("option", [_vm._v("All")]),
+                  _vm._v(" "),
                   _vm._l(_vm.categories, function(category, index) {
                     return _c("option", { key: index }, [
-                      _vm._v(_vm._s(category.name))
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(category.name) +
+                          "\n                            "
+                      )
                     ])
                   })
                 ],
