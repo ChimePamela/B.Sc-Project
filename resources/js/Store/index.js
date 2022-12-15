@@ -13,6 +13,7 @@ const store = new Vuex.Store({
         },
         categories: [],
         authors: [],
+        wishlist: [],
         user: {
             profile: JSON.parse(localStorage.getItem('user')) || null
         },
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
         },
         SET_FEATURED(state, payload) {
             state.books.featured = payload
+        },
+        SET_WISHLIST(state, payload) {
+            state.wishlist = payload;
         },
         SET_LATEST(state, payload) {
             state.books.latest = payload
@@ -105,6 +109,19 @@ const store = new Vuex.Store({
             return axios.get('/app/latest')
                 .then(({ data }) => {
                     commit('SET_LATEST', data.data)
+                    return data.data;
+                })
+        },
+        addToWishlist(_, payload) {
+            return axios.post('/app/wishlist/add', { book_id: payload.id })
+                .then(({ data }) => {
+                    return data.data
+                });
+        },
+        getWishlist({ commit }) {
+            return axios.get('/app/wishlist/all')
+                .then(({ data }) => {
+                    commit('SET_WISHLIST', data.data)
                     return data.data;
                 })
         }

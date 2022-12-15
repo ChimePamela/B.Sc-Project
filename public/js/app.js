@@ -38550,7 +38550,7 @@ var routes = [{
 }, {
   path: '/wishlist',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../Pages/Authors.vue */ "./resources/js/Pages/Authors.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
   },
   name: 'wishlist'
 }, {
@@ -38589,6 +38589,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     categories: [],
     authors: [],
+    wishlist: [],
     user: {
       profile: JSON.parse(localStorage.getItem('user')) || null
     },
@@ -38606,6 +38607,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     SET_FEATURED: function SET_FEATURED(state, payload) {
       state.books.featured = payload;
+    },
+    SET_WISHLIST: function SET_WISHLIST(state, payload) {
+      state.wishlist = payload;
     },
     SET_LATEST: function SET_LATEST(state, payload) {
       state.books.latest = payload;
@@ -38690,6 +38694,22 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return axios.get('/app/latest').then(function (_ref16) {
         var data = _ref16.data;
         commit('SET_LATEST', data.data);
+        return data.data;
+      });
+    },
+    addToWishlist: function addToWishlist(_, payload) {
+      return axios.post('/app/wishlist/add', {
+        book_id: payload.id
+      }).then(function (_ref17) {
+        var data = _ref17.data;
+        return data.data;
+      });
+    },
+    getWishlist: function getWishlist(_ref18) {
+      var commit = _ref18.commit;
+      return axios.get('/app/wishlist/all').then(function (_ref19) {
+        var data = _ref19.data;
+        commit('SET_WISHLIST', data.data);
         return data.data;
       });
     }

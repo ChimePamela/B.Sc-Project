@@ -28,6 +28,11 @@ Route::prefix('app')->group(function () {
     Route::get('top-rated', [BookController::class, 'get_top_rated']);
     Route::get('featured', [BookController::class, 'get_featured']);
     Route::get('latest', [BookController::class, 'get_latest']);
+
+    Route::prefix('wishlist')->middleware('auth')->group(function () {
+        Route::post('add', [BookController::class, 'add_to_wishlist']);
+        Route::get('all', [BookController::class, 'get_wishlist']);
+    });
 });
 
 Route::get('/{any?}', function() {

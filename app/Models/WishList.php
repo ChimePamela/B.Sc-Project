@@ -11,6 +11,7 @@ class WishList extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'book_id'];
     /**
      * Get the user that owns the WishList
      *
@@ -28,6 +29,6 @@ class WishList extends Model
      */
     public function book(): HasOne
     {
-        return $this->hasOne(Book::class);
+        return $this->hasOne(Book::class, 'id', 'book_id');
     }
 }

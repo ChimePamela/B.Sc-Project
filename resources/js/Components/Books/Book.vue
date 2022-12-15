@@ -9,7 +9,7 @@
           <img src="images/books/img-01.jpg" alt="image description" />
         </div>
       </div>
-      <a class="tg-btnaddtowishlist" href="javascript:void(0);">
+      <a v-if="isLoggedIn" @click="addToWishlist" class="tg-btnaddtowishlist" href="javascript:void(0);">
         <i class="icon-heart"></i>
         <span>add to wishlist</span>
       </a>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { truncate } from '../../Helpers/format'
 
 export default {
@@ -48,6 +49,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+        isLoggedIn: state => state.isLoggedIn,
+    }),
     title() {
         return truncate(this.book.title, this.maxChar)
     },
@@ -58,5 +62,10 @@ export default {
         return truncate(this.book.category.name, this.maxChar)
     }
   },
+  methods: {
+    async addToWishlist() {
+        await this.$store.dispatch('addToWishlist', { id: this.book.id });
+    }
+  }
 };
 </script>

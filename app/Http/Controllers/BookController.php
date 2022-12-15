@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\WishList;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -78,6 +81,37 @@ class BookController extends Controller
         return response()->json([
             'error' => false,
             'data' => $authors
+        ]);
+    }
+    /**
+     * add book to wishlist
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function add_to_wishlist(Request $request)
+    {
+        $user_id = Auth::id();
+        $book_id = $request->book_id;
+
+        WishList::create([
+            'user_id' => $user_id,
+            'book_id' => $book_id,
+        ]);
+    }
+    /**
+     * get logged in user wishlist
+     *
+     * @return void
+     */
+    public function get_wishlist()
+    {
+        $user_id = Auth::id();
+        $wishlist = WishList::with('user')->with('book')->where('user_id', $user_id)->get();
+
+        return response()->json([
+            'error' => false,
+            'data' => $wishlist
         ]);
     }
 }
