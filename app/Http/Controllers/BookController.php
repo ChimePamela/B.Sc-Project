@@ -94,9 +94,15 @@ class BookController extends Controller
         $user_id = Auth::id();
         $book_id = $request->book_id;
 
-        WishList::create([
-            'user_id' => $user_id,
-            'book_id' => $book_id,
+        $exists = WishList::where('user_id', $user_id)->where('book_id', $book_id)->first();
+        if (!$exists) {
+            WishList::create([
+                'user_id' => $user_id,
+                'book_id' => $book_id,
+            ]);
+        }
+        return response()->json([
+            'error' => false
         ]);
     }
     /**
@@ -112,6 +118,22 @@ class BookController extends Controller
         return response()->json([
             'error' => false,
             'data' => $wishlist
+        ]);
+    }
+    /**
+     * remove item from wishlist
+     *
+     * @param integer $id
+     * @return JsonResponse
+     */
+    public function remove_from_wishlist(int $id): JsonResponse
+    {
+        $wishlist_item = WishList::find($id);
+        if ($wishlist_item) {
+            $wishlist_item->delete();
+        }
+        return response()->json([
+            'error' => false
         ]);
     }
 }

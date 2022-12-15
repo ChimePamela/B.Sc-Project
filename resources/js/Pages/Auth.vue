@@ -68,7 +68,8 @@ export default {
             } catch (e) {
                 const msg = this.getErrorMessage(e.response.data.errors);
                 this.$notify({
-                    group: 'errors',
+                    group: 'notif',
+                    type: 'error',
                     title: 'Registration Failed',
                     text: msg,
                 });
@@ -102,7 +103,8 @@ export default {
             } catch (e) {
                 const msg = this.getErrorMessage(e.response.data.errors);
                 this.$notify({
-                    group: 'errors',
+                    group: 'notif',
+                    type: 'error',
                     title: 'Login Failed',
                     text: msg,
                 });

@@ -20471,13 +20471,13 @@ var render = function() {
     [
       _c("AppNavbar"),
       _vm._v(" "),
+      _c("notifications", {
+        attrs: { group: "notif", position: "top center" }
+      }),
+      _vm._v(" "),
       _c("router-view"),
       _vm._v(" "),
-      _c("AppFooter"),
-      _vm._v(" "),
-      _c("notifications", {
-        attrs: { group: "errors", classes: "errors", position: "bottom center" }
-      })
+      _c("AppFooter")
     ],
     1
   )
@@ -38538,7 +38538,7 @@ var routes = [{
 }, {
   path: '/books',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
   },
   name: 'books'
 }, {
@@ -38550,13 +38550,13 @@ var routes = [{
 }, {
   path: '/wishlist',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
   },
   name: 'wishlist'
 }, {
   path: '/auth',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
   },
   name: 'auth'
 }];
@@ -38710,6 +38710,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return axios.get('/app/wishlist/all').then(function (_ref19) {
         var data = _ref19.data;
         commit('SET_WISHLIST', data.data);
+        return data.data;
+      });
+    },
+    removeFromWishlist: function removeFromWishlist(_, payload) {
+      return axios["delete"]("/app/wishlist/".concat(payload.id)).then(function (_ref20) {
+        var data = _ref20.data;
         return data.data;
       });
     }

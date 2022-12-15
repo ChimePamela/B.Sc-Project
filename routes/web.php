@@ -32,6 +32,7 @@ Route::prefix('app')->group(function () {
     Route::prefix('wishlist')->middleware('auth')->group(function () {
         Route::post('add', [BookController::class, 'add_to_wishlist']);
         Route::get('all', [BookController::class, 'get_wishlist']);
+        Route::delete('{id}', [BookController::class, 'remove_from_wishlist']);
     });
 });
 

@@ -65,6 +65,11 @@ export default {
   methods: {
     async addToWishlist() {
         await this.$store.dispatch('addToWishlist', { id: this.book.id });
+        this.$notify({
+            group: 'notif',
+            title: 'Action successful',
+            text: 'Book successfully added to your wishlist',
+        });
     }
   }
 };

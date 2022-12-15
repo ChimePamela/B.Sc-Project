@@ -124,6 +124,12 @@ const store = new Vuex.Store({
                     commit('SET_WISHLIST', data.data)
                     return data.data;
                 })
+        },
+        removeFromWishlist(_, payload) {
+            return axios.delete(`/app/wishlist/${payload.id}`)
+                .then(({ data }) => {
+                    return data.data
+                })
         }
     }
 })

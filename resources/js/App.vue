@@ -1,9 +1,9 @@
 <template>
   <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
     <AppNavbar />
+    <notifications group="notif" position="top center" />
     <router-view></router-view>
     <AppFooter />
-    <notifications group="errors" classes="errors" position="bottom center" />
   </div>
 </template>
 
