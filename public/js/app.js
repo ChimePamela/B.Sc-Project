@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppFooter: _Components_AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppNavbar: function AppNavbar() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
     }
   }
 });
@@ -38532,13 +38532,13 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: '',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../Pages/ExploreBooks.vue */ "./resources/js/Pages/ExploreBooks.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/ExploreBooks.vue */ "./resources/js/Pages/ExploreBooks.vue"));
   },
   name: 'explore'
 }, {
   path: '/books',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
   },
   name: 'books'
 }, {
@@ -38550,7 +38550,7 @@ var routes = [{
 }, {
   path: '/wishlist',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
   },
   name: 'wishlist'
 }, {
@@ -38717,6 +38717,15 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return axios["delete"]("/app/wishlist/".concat(payload.id)).then(function (_ref20) {
         var data = _ref20.data;
         return data.data;
+      });
+    },
+    reviewBook: function reviewBook(_, payload) {
+      return axios.post("/app/review/".concat(payload.id), {
+        rating: payload.rating,
+        comment: payload.comment
+      }).then(function (_ref21) {
+        var data = _ref21.data;
+        return data;
       });
     }
   }

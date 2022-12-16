@@ -130,6 +130,14 @@ const store = new Vuex.Store({
                 .then(({ data }) => {
                     return data.data
                 })
+        },
+        reviewBook(_, payload) {
+            return axios.post(`/app/review/${payload.id}`, {
+                rating: payload.rating,
+                comment: payload.comment
+            }).then(({ data }) => {
+                return data
+            })
         }
     }
 })

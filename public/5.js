@@ -87,7 +87,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 0;
 
                 if (!(_this.form.name && _this.form.email && _this.form.password)) {
-                  _context.next = 7;
+                  _context.next = 8;
                   break;
                 }
 
@@ -100,12 +100,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.showLogin = true;
 
-              case 7:
-                _context.next = 13;
+                _this.$notify({
+                  group: 'notif',
+                  title: 'Registration Successful',
+                  text: 'Login to you new Readit account'
+                });
+
+              case 8:
+                _context.next = 14;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 msg = _this.getErrorMessage(_context.t0.response.data.errors);
 
@@ -116,17 +122,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   text: msg
                 });
 
-              case 13:
-                _context.prev = 13;
+              case 14:
+                _context.prev = 14;
                 _this.loading = false;
-                return _context.finish(13);
+                return _context.finish(14);
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 9, 13, 16]]);
+        }, _callee, null, [[0, 10, 14, 17]]);
       }))();
     },
     clearForm: function clearForm() {

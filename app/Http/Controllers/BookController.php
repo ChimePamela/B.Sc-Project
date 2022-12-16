@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Review;
 use App\Models\WishList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use willvincent\Rateable\Rating;
 
 class BookController extends Controller
 {
@@ -19,6 +21,9 @@ class BookController extends Controller
     public function get_all_books(): JsonResponse
     {
         $books = Book::with('author')->with('category')->with('reviews')->get();
+        foreach ($books as $book) {
+            $book->avgRating = (double) $book->averageRating() ?? 0.00;
+        }
         return response()->json([
             'error' => false,
             'data' => $books
@@ -135,5 +140,56 @@ class BookController extends Controller
         return response()->json([
             'error' => false
         ]);
+    }
+    /**
+     * add review to book
+     *
+     * @param Request $request
+     * @param integer $id
+     * @return JsonResponse
+     */
+    public function review_book(Request $request, int $id): JsonResponse
+    {
+        try {
+            $book_id = $id;
+            $user_id = Auth::id();
+            $rating = $request->rating;
+            $comment = $request->comment;
+
+            if (!$rating) {
+                return response()->json([
+                    'error' => true,
+                    'msg' => 'please select a rating value'
+                ]);
+            }
+
+            $book = Book::find($book_id);
+            if (!$book) {
+                return response()->json([
+                    'error' => true,
+                    'msg' => 'book not found'
+                ]);
+            }
+            $rating_entry = new Rating;
+            $rating_entry->user_id = $user_id;
+            $rating_entry->rating = $rating;
+
+            $book->ratings()->save($rating_entry);
+            Review::create([
+                'user_id' => $user_id,
+                'book_id' => $book_id,
+                'rating' => $rating,
+                'comment' => $comment
+            ]);
+
+            return response()->json([
+                'error' => false
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => true,
+                'msg' => $th->getMessage()
+            ]);
+        }
     }
 }

@@ -125,7 +125,7 @@ input[type="color"],
 	display: inline-block;
 	vertical-align: middle;
 	border: 1px solid #dbdbdb;
-	text-transform: capitalize;
+	/* text-transform: capitalize; */
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;

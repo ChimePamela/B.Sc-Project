@@ -28,6 +28,7 @@ Route::prefix('app')->group(function () {
     Route::get('top-rated', [BookController::class, 'get_top_rated']);
     Route::get('featured', [BookController::class, 'get_featured']);
     Route::get('latest', [BookController::class, 'get_latest']);
+    Route::post('review/{id}', [BookController::class, 'review_book']);
 
     Route::prefix('wishlist')->middleware('auth')->group(function () {
         Route::post('add', [BookController::class, 'add_to_wishlist']);

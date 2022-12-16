@@ -27,10 +27,7 @@
         >By: <a href="javascript:void(0);">{{ author }}</a></span
       >
       <span class="tg-stars"><span></span></span>
-      <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-        <i class="fa fa-book"></i>
-        <em>Review Book</em>
-      </a>
+        <review-book v-if="isLoggedIn" :book="book" />
     </div>
   </div>
 </template>
@@ -38,6 +35,7 @@
 <script>
 import { mapState } from 'vuex';
 import { truncate } from '../../Helpers/format'
+import ReviewBook from './ReviewBook.vue';
 
 export default {
   name: "Book",
@@ -47,6 +45,9 @@ export default {
         type: Number,
         default: 20
     }
+  },
+  components: {
+    ReviewBook
   },
   computed: {
     ...mapState({

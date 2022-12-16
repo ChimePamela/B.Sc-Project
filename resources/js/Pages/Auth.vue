@@ -64,6 +64,11 @@ export default {
                     await this.$store.dispatch('register', this.form);
                     this.clearForm()
                     this.showLogin = true
+                    this.$notify({
+                        group: 'notif',
+                        title: 'Registration Successful',
+                        text: 'Login to you new Readit account',
+                    });
                 }
             } catch (e) {
                 const msg = this.getErrorMessage(e.response.data.errors);
