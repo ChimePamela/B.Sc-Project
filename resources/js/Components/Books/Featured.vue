@@ -25,9 +25,12 @@
               <span class="tg-bookwriter"
                 >By: <a href="javascript:void(0);">{{ author }}</a></span
               >
-              <span class="tg-stars"><span></span></span>
+              <div>
+                <StarRating :rating="featured.avgRating" class="book-rating" read-only :show-rating="false" :star-size="20" />
+              </div>
               <div class="tg-priceandbtn">
                 <a
+                    @click="addToWishlist"
                   class="tg-btn tg-btnstyletwo tg-active"
                   href="javascript:void(0);"
                 >
@@ -45,9 +48,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "FeaturedBook",
+  components: {
+    StarRating
+  },
   computed: {
     ...mapState({
       featured: (state) => state.books.featured,
@@ -65,5 +72,15 @@ export default {
   async mounted() {
     await this.$store.dispatch("getFeatured");
   },
+    methods: {
+        async addToWishlist() {
+            await this.$store.dispatch('addToWishlist', { id: this.featured.id });
+            this.$notify({
+                group: 'notif',
+                title: 'Action successful',
+                text: 'Book successfully added to your wishlist',
+            });
+        }
+  }
 };
 </script>

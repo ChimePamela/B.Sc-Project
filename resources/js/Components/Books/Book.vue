@@ -26,7 +26,9 @@
       <span class="tg-bookwriter"
         >By: <a href="javascript:void(0);">{{ author }}</a></span
       >
-      <span class="tg-stars"><span></span></span>
+      <div class="">
+        <StarRating :rating="book.avgRating" class="book-rating" read-only :show-rating="false" :star-size="20" />
+      </div>
         <review-book v-if="isLoggedIn" :book="book" />
     </div>
   </div>
@@ -36,6 +38,7 @@
 import { mapState } from 'vuex';
 import { truncate } from '../../Helpers/format'
 import ReviewBook from './ReviewBook.vue';
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "Book",
@@ -47,7 +50,8 @@ export default {
     }
   },
   components: {
-    ReviewBook
+    ReviewBook,
+    StarRating
   },
   computed: {
     ...mapState({
@@ -75,3 +79,9 @@ export default {
   }
 };
 </script>
+
+<style>
+    .vue-star-rating {
+        display: block !important;
+    }
+</style>

@@ -53,6 +53,7 @@ class BookController extends Controller
     public function get_featured(): JsonResponse
     {
         $featured = Book::with('author')->with('category')->with('reviews')->where('is_featured', '=', 1)->first();
+        $featured->avgRating = (double) $featured->averageRating() ?? 0.00;
 
         return response()->json([
             'error' => false,

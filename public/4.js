@@ -12,6 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/VueStarRating.common.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -69,9 +71,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FeaturedBook",
+  components: {
+    StarRating: vue_star_rating__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     featured: function featured(state) {
       return state.books.featured;
@@ -105,6 +114,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }, _callee);
     }))();
+  },
+  methods: {
+    addToWishlist: function addToWishlist() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch('addToWishlist', {
+                  id: _this2.featured.id
+                });
+
+              case 2:
+                _this2.$notify({
+                  group: 'notif',
+                  title: 'Action successful',
+                  text: 'Book successfully added to your wishlist'
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
   }
 });
 
@@ -446,9 +485,37 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _c(
+                      "div",
+                      [
+                        _c("StarRating", {
+                          staticClass: "book-rating",
+                          attrs: {
+                            rating: _vm.featured.avgRating,
+                            "read-only": "",
+                            "show-rating": false,
+                            "star-size": 20
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _c("div", { staticClass: "tg-priceandbtn" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "tg-btn tg-btnstyletwo tg-active",
+                          attrs: { href: "javascript:void(0);" },
+                          on: { click: _vm.addToWishlist }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-shopping-basket" }),
+                          _vm._v(" "),
+                          _c("em", [_vm._v("Add To Wishlist")])
+                        ]
+                      )
+                    ])
                   ])
                 ]
               )
@@ -465,31 +532,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "tg-themetagbox" }, [
       _c("span", { staticClass: "tg-themetag" }, [_vm._v("featured")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "tg-stars" }, [_c("span")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tg-priceandbtn" }, [
-      _c(
-        "a",
-        {
-          staticClass: "tg-btn tg-btnstyletwo tg-active",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [
-          _c("i", { staticClass: "fa fa-shopping-basket" }),
-          _vm._v(" "),
-          _c("em", [_vm._v("Add To Wishlist")])
-        ]
-      )
     ])
   }
 ]
