@@ -176,7 +176,7 @@ export default {
         margin-top: 1rem;
         resize: none;
         width: 100%;
-        height: 11rem;
+        height: 5rem;
     }
     input {
         width: 100%;

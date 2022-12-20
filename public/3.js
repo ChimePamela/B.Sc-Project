@@ -700,7 +700,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.updateBook {\n    display: inline-block;\n}\n.modal-dialog {\n    transform: translate(0,2%)\n}\n.modal-body {\n    display: flex;\n    flex-direction: column;\n}\n.checkbox-label {\n    display: inline-flex;\n}\ninput.checkbox-input {\n    width: 19px;\n    margin-right: 1rem;\n}\ntextarea {\n    margin-top: 1rem;\n    resize: none;\n    width: 100%;\n    height: 11rem;\n}\ninput {\n    width: 100%;\n}\n.modal {\n    display: block;\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0,0,0,0.4);\n}\n", ""]);
+exports.push([module.i, "\n.updateBook {\n    display: inline-block;\n}\n.modal-dialog {\n    transform: translate(0,2%)\n}\n.modal-body {\n    display: flex;\n    flex-direction: column;\n}\n.checkbox-label {\n    display: inline-flex;\n}\ninput.checkbox-input {\n    width: 19px;\n    margin-right: 1rem;\n}\ntextarea {\n    margin-top: 1rem;\n    resize: none;\n    width: 100%;\n    height: 5rem;\n}\ninput {\n    width: 100%;\n}\n.modal {\n    display: block;\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0,0,0,0.4);\n}\n", ""]);
 
 // exports
 
