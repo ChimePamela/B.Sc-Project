@@ -1696,6 +1696,7 @@ li.menu-item-has-mega-menu { position: static; }
 	float: left;
 	overflow: hidden;
 	position: relative;
+    height: 40rem;
 }
 .tg-bookimg{
 	width: 100%;
