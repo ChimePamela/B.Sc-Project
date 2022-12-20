@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppFooter: _Components_AppFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppNavbar: function AppNavbar() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./Components/AppNavbar.vue */ "./resources/js/Components/AppNavbar.vue"));
     }
   }
 });
@@ -38532,37 +38532,37 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: '',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../Pages/ExploreBooks.vue */ "./resources/js/Pages/ExploreBooks.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../Pages/ExploreBooks.vue */ "./resources/js/Pages/ExploreBooks.vue"));
   },
   name: 'explore'
 }, {
   path: '/books',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../Pages/BookList.vue */ "./resources/js/Pages/BookList.vue"));
   },
   name: 'books'
 }, {
   path: '/manage-books',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../Pages/ManageBooks.vue */ "./resources/js/Pages/ManageBooks.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../Pages/ManageBooks.vue */ "./resources/js/Pages/ManageBooks.vue"));
   },
   name: 'manage-books'
 }, {
   path: '/authors',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../Pages/Authors.vue */ "./resources/js/Pages/Authors.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../Pages/Authors.vue */ "./resources/js/Pages/Authors.vue"));
   },
   name: 'authors'
 }, {
   path: '/wishlist',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../Pages/Wishlist.vue */ "./resources/js/Pages/Wishlist.vue"));
   },
   name: 'wishlist'
 }, {
   path: '/auth',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../Pages/Auth.vue */ "./resources/js/Pages/Auth.vue"));
   },
   name: 'auth'
 }];
