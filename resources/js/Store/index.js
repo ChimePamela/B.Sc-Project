@@ -15,9 +15,15 @@ const store = new Vuex.Store({
         authors: [],
         wishlist: [],
         user: {
-            profile: JSON.parse(localStorage.getItem('user')) || null
+            profile: JSON.parse(localStorage.getItem('user')) || null,
         },
-        isLoggedIn: !!localStorage.getItem('user') || false
+        isLoggedIn: !!localStorage.getItem('user') || false,
+        isAdmin: JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).is_admin : null
+    },
+    getters: {
+        isAdmin(state) {
+            return state.isAdmin;
+        }
     },
     mutations: {
         SET_ALL_BOOKS(state, payload) {
@@ -138,6 +144,36 @@ const store = new Vuex.Store({
             }).then(({ data }) => {
                 return data
             })
+        },
+        updateBook(_, payload) {
+            return axios.put(`/app/book/${payload.id}`, payload.form)
+                .then(({ data }) => {
+                    return data
+                })
+        },
+        deleteBook(_, payload) {
+            return axios.delete(`/app/book/${payload.id}`)
+                .then(({ data }) => {
+                    return data.data
+                })
+        },
+        addBook(_, payload) {
+            return axios.post('/app/book/', payload)
+                .then(({ data }) => {
+                    return data.data
+                })
+        },
+        createCategory(_, payload) {
+            return axios.post('/app/category', payload)
+                .then(({ data }) => {
+                    return data.data
+                })
+        },
+        addAuthor(_, payload) {
+            return axios.post('/app/author', payload)
+                .then(({ data }) => {
+                    return data.data
+                })
         }
     }
 })

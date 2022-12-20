@@ -86,6 +86,7 @@ export default {
             this.form.rating = 0;
             this.form.comment = '';
             this.modalActive = false;
+            this.$emit('review-submitted')
         }
     }
 };

@@ -318,17 +318,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserMenu",
   props: {
     isLoggedIn: Boolean
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     profile: function profile(state) {
       return state.user.profile;
     }
-  })),
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['isAdmin'])),
   methods: {
     logout: function logout() {
       var _this = this;
@@ -806,28 +817,65 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("ul", { staticClass: "sub-menu" }, [
-          _c(
-            "li",
-            [
-              _c("router-link", { attrs: { to: { name: "wishlist" } } }, [
-                _vm._v("My Wishlist")
+        _vm.isAdmin
+          ? _c("ul", { staticClass: "sub-menu" }, [
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "manage-books" } } },
+                    [_vm._v("Manage Books")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "manage-reviews" } } },
+                    [_vm._v("Manage Reviews")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "javascript:void(0)" },
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("Logout")]
+                )
               ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              {
-                attrs: { href: "javascript:void(0)" },
-                on: { click: _vm.logout }
-              },
-              [_vm._v("Logout")]
-            )
-          ])
-        ])
+            ])
+          : _c("ul", { staticClass: "sub-menu" }, [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: { name: "wishlist" } } }, [
+                    _vm._v("My Wishlist")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "javascript:void(0)" },
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("Logout")]
+                )
+              ])
+            ])
       ])
     : _vm._e()
 }

@@ -45,7 +45,7 @@
                         v-for="(item, index) in filterdData"
                         :key="index"
                     >
-                        <Book :book="item" />
+                        <Book @review-submitted="getAllBooks" :book="item" />
                     </div>
                 </div>
             </div>
@@ -82,12 +82,15 @@ export default {
         }
     },
     async mounted() {
-        await this.$store.dispatch("getAllBooks");
-        this.filterdData = this.all;
-
-        this.handleFilterChange()
+        await this.getAllBooks()
     },
     methods: {
+        async getAllBooks() {
+            await this.$store.dispatch("getAllBooks");
+            this.filterdData = this.all;
+
+            this.handleFilterChange()
+        },
         handleCategoryChange({ target: { value } }) {
             if (value === 'All') {
                 this.filterdData = this.all

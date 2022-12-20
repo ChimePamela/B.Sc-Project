@@ -29,7 +29,7 @@
       <div class="">
         <StarRating :rating="book.avgRating" class="book-rating" read-only :show-rating="false" :star-size="20" />
       </div>
-        <review-book v-if="isLoggedIn" :book="book" />
+        <review-book @review-submitted="handleReviewSubmitted" v-if="isLoggedIn" :book="book" />
     </div>
   </div>
 </template>
@@ -75,6 +75,9 @@ export default {
             title: 'Action successful',
             text: 'Book successfully added to your wishlist',
         });
+    },
+    handleReviewSubmitted() {
+        this.$emit('review-submitted')
     }
   }
 };

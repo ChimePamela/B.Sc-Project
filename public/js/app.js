@@ -38542,6 +38542,12 @@ var routes = [{
   },
   name: 'books'
 }, {
+  path: '/manage-books',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../Pages/ManageBooks.vue */ "./resources/js/Pages/ManageBooks.vue"));
+  },
+  name: 'manage-books'
+}, {
   path: '/authors',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../Pages/Authors.vue */ "./resources/js/Pages/Authors.vue"));
@@ -38593,7 +38599,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     user: {
       profile: JSON.parse(localStorage.getItem('user')) || null
     },
-    isLoggedIn: !!localStorage.getItem('user') || false
+    isLoggedIn: !!localStorage.getItem('user') || false,
+    isAdmin: JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).is_admin : null
+  },
+  getters: {
+    isAdmin: function isAdmin(state) {
+      return state.isAdmin;
+    }
   },
   mutations: {
     SET_ALL_BOOKS: function SET_ALL_BOOKS(state, payload) {
@@ -38726,6 +38738,36 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       }).then(function (_ref21) {
         var data = _ref21.data;
         return data;
+      });
+    },
+    updateBook: function updateBook(_, payload) {
+      return axios.put("/app/book/".concat(payload.id), payload.form).then(function (_ref22) {
+        var data = _ref22.data;
+        return data;
+      });
+    },
+    deleteBook: function deleteBook(_, payload) {
+      return axios["delete"]("/app/book/".concat(payload.id)).then(function (_ref23) {
+        var data = _ref23.data;
+        return data.data;
+      });
+    },
+    addBook: function addBook(_, payload) {
+      return axios.post('/app/book/', payload).then(function (_ref24) {
+        var data = _ref24.data;
+        return data.data;
+      });
+    },
+    createCategory: function createCategory(_, payload) {
+      return axios.post('/app/category', payload).then(function (_ref25) {
+        var data = _ref25.data;
+        return data.data;
+      });
+    },
+    addAuthor: function addAuthor(_, payload) {
+      return axios.post('/app/author', payload).then(function (_ref26) {
+        var data = _ref26.data;
+        return data.data;
       });
     }
   }

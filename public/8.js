@@ -120,14 +120,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch("getAllBooks");
+              return _this.getAllBooks();
 
             case 2:
-              _this.filterdData = _this.all;
-
-              _this.handleFilterChange();
-
-            case 4:
             case "end":
               return _context.stop();
           }
@@ -136,6 +131,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
+    getAllBooks: function getAllBooks() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch("getAllBooks");
+
+              case 2:
+                _this2.filterdData = _this2.all;
+
+                _this2.handleFilterChange();
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     handleCategoryChange: function handleCategoryChange(_ref) {
       var value = _ref.target.value;
 
@@ -266,7 +285,12 @@ var render = function() {
                 return _c(
                   "div",
                   { key: index, staticClass: "col-md-3 col-lg-3" },
-                  [_c("Book", { attrs: { book: item } })],
+                  [
+                    _c("Book", {
+                      attrs: { book: item },
+                      on: { "review-submitted": _vm.getAllBooks }
+                    })
+                  ],
                   1
                 )
               }),

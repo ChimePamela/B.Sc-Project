@@ -8,7 +8,18 @@
         </a>
       </figure>
     </div>
-    <ul class="sub-menu">
+    <ul class="sub-menu" v-if="isAdmin">
+      <li>
+        <router-link :to="{ name: 'manage-books' }">Manage Books</router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'manage-reviews' }">Manage Reviews</router-link>
+      </li>
+      <li>
+        <a @click="logout" href="javascript:void(0)">Logout</a>
+      </li>
+    </ul>
+    <ul class="sub-menu" v-else>
       <li>
         <router-link :to="{ name: 'wishlist' }">My Wishlist</router-link>
       </li>
@@ -20,7 +31,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: "UserMenu",
@@ -31,6 +42,9 @@ export default {
     ...mapState({
         profile: state => state.user.profile
     }),
+    ...mapGetters([
+        'isAdmin'
+    ])
   },
   methods: {
     async logout() {

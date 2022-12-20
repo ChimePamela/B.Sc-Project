@@ -28,13 +28,24 @@ Route::prefix('app')->group(function () {
     Route::get('top-rated', [BookController::class, 'get_top_rated']);
     Route::get('featured', [BookController::class, 'get_featured']);
     Route::get('latest', [BookController::class, 'get_latest']);
-    Route::post('review/{id}', [BookController::class, 'review_book']);
 
-    Route::prefix('wishlist')->middleware('auth')->group(function () {
-        Route::post('add', [BookController::class, 'add_to_wishlist']);
-        Route::get('all', [BookController::class, 'get_wishlist']);
-        Route::delete('{id}', [BookController::class, 'remove_from_wishlist']);
+    Route::middleware('auth')->group(function () {
+        Route::post('review/{id}', [BookController::class, 'review_book']);
+
+        Route::post('category', [CategoryController::class, 'create_category']);
+        Route::post('author', [BookController::class, 'add_author']);
+        Route::prefix('book')->group(function () {
+            Route::post('', [BookController::class, 'add_book']);
+            Route::delete('{id}', [BookController::class, 'delete_book']);
+            Route::put('{id}', [BookController::class, 'update_book']);
+        });
+        Route::prefix('wishlist')->group(function () {
+            Route::post('add', [BookController::class, 'add_to_wishlist']);
+            Route::get('all', [BookController::class, 'get_wishlist']);
+            Route::delete('{id}', [BookController::class, 'remove_from_wishlist']);
+        });
     });
+
 });
 
 Route::get('/{any?}', function() {

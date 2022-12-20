@@ -10,6 +10,11 @@ const routes = [
         name: 'books'
     },
     {
+        path: '/manage-books',
+        component: () => import('../Pages/ManageBooks.vue'),
+        name: 'manage-books'
+    },
+    {
         path: '/authors',
         component: () => import('../Pages/Authors.vue'),
         name: 'authors'

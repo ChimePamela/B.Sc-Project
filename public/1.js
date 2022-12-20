@@ -124,6 +124,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
+    },
+    handleReviewSubmitted: function handleReviewSubmitted() {
+      this.$emit('review-submitted');
     }
   }
 });
@@ -267,7 +270,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.form.comment = '';
                 _this.modalActive = false;
 
-              case 14:
+                _this.$emit('review-submitted');
+
+              case 15:
               case "end":
                 return _context.stop();
             }
@@ -465,7 +470,10 @@ var render = function() {
         ),
         _vm._v(" "),
         _vm.isLoggedIn
-          ? _c("review-book", { attrs: { book: _vm.book } })
+          ? _c("review-book", {
+              attrs: { book: _vm.book },
+              on: { "review-submitted": _vm.handleReviewSubmitted }
+            })
           : _vm._e()
       ],
       1

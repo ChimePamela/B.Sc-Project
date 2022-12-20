@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -19,6 +20,19 @@ class CategoryController extends Controller
         return response()->json([
             'error' => false,
             'data' => $categories
+        ]);
+    }
+    /**
+     * create a new category
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function create_category(Request $request): JsonResponse
+    {
+        Category::create($request->all());
+        return response()->json([
+            'error' => false,
         ]);
     }
 }

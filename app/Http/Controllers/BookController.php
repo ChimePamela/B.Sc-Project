@@ -9,6 +9,7 @@ use App\Models\WishList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use willvincent\Rateable\Rating;
 
 class BookController extends Controller
@@ -90,6 +91,17 @@ class BookController extends Controller
         ]);
     }
     /**
+     * add a new author
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function add_author(Request $request): JsonResponse
+    {
+        Author::create($request->all());
+        return response()->json([ 'error' => false ]);
+    }
+    /**
      * add book to wishlist
      *
      * @param Request $request
@@ -141,6 +153,94 @@ class BookController extends Controller
         return response()->json([
             'error' => false
         ]);
+    }
+    /**
+     * delete book
+     *
+     * @param integer $id
+     * @return JsonResponse
+     */
+    public function delete_book(int $id): JsonResponse
+    {
+        $is_admin = Auth::user()->is_admin;
+        if (!$is_admin) {
+            return response()->json([
+                'error' => true,
+                'msg' => 'You are not allowed to perform this action'
+            ], 401);
+        }
+
+        $book = Book::find($id);
+        if (!$book) {
+            return response()->json([
+                'error' => true,
+                'msg' => 'book not found'
+            ]);
+        }
+        $book->delete();
+
+        return response()->json([ 'error' => false ]);
+    }
+    /**
+     * update a single book
+     *
+     * @param integer $id
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function update_book(int $id, Request $request): JsonResponse
+    {
+        $is_admin = Auth::user()->is_admin;
+        if (!$is_admin) {
+            return response()->json([
+                'error' => true,
+                'msg' => 'You are not allowed to perform this action'
+            ], 401);
+        }
+
+        $book = Book::find($id);
+        if (!$book) {
+            return response()->json([
+                'error' => true,
+                'msg' => 'book not found'
+            ]);
+        }
+
+        $book->title = $request->title ?? $book->title;
+        $book->image_url = $request->image_url ?? $book->image_url;
+        $book->description = $request->description ?? $book->description;
+        $book->is_top_rated = $request->is_top_rated ?? $book->is_top_rated;
+
+        if ($request->is_featured && !$book->is_featured) {
+            Book::where('is_featured', 1)->update(['is_featured' => 0]);
+        }
+
+        $book->is_featured = $request->is_featured ?? $book->is_featured;
+        $book->save();
+
+        return response()->json([ 'error' => false ]);
+    }
+    /**
+     * add a new book
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function add_book(Request $request): JsonResponse
+    {
+        $is_admin = Auth::user()->is_admin;
+        if (!$is_admin) {
+            return response()->json([
+                'error' => true,
+                'msg' => 'You are not allowed to perform this action'
+            ], 401);
+        }
+        $payload = (object) $request->all();
+        $payload->published_date = date('Y-m-d H:i:s');
+
+        Book::create((array) $payload);
+
+        return response()->json([ 'error' => false ]);
     }
     /**
      * add review to book
